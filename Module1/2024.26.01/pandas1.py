@@ -10,6 +10,7 @@ data = {
 df = pd.DataFrame(data)
 
 print(df)
+print("===================================")
 
 s = pd.Series([1,5,23,6])
 s = pd.Series(["max", "apple", "banana"])
