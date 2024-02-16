@@ -1,0 +1,21 @@
+OrderID,Product,Category,Quantity,Price,Date
+1,Laptop,Electronics,4,800.00,2023-01-01
+2,Smartphone,Electronics,3,400.00,2023-02-02
+3,Headphones,Electronics,1,50.00,2023-02-02
+4,TV,Electronics,1,1200.00,2023-03-03
+5,Refrigerator,Appliances,1,1500.00,2023-03-03
+6,Blender,Appliances,2,30.00,2023-04-04
+7,Laptop,Electronics,1,850.00,2023-05-05
+8,Microwave,Appliances,1,100.00,2023-05-05
+9,Smartphone,Electronics,2,420.00,2023-06-06
+10,Headphones,Electronics,1,60.00,2023-06-06
+11,Tablet,Electronics,7,300.00,2023-07-07
+12,Refrigerator,Appliances,2,1600.00,2023-08-08
+13,Smartwatch,Electronics,3,150.00,2023-09-09
+14,Blender,Appliances,1,35.00,2023-10-10
+15,Laptop,Electronics,2,900.00,2023-11-11
+16,Washing Machine,Appliances,1,800.00,2023-12-12
+17,Smartphone,Electronics,2,430.00,2023-12-13
+18,Headphones,Electronics,1,65.00,2023-01-14
+19,TV,Electronics,1,1300.00,2023-02-15
+20,Microwave,Appliances,2,120.00,2023-02-16
