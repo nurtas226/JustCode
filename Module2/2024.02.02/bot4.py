@@ -11,14 +11,19 @@ def message_handler_func(message):
 
     if "hi" in message.text:
         text = "Hello"
-    elif message.text == "Как ты?":
-        text = "Все отлично, ты как?"
+    elif message.text == "How are you?":
+        text = "All good, wbu?"
+    elif message.text == "What are you doing?":
+        text = "Texting you, wbu?"
+    elif message.text == "How are you?":
+        text = "All good, wbu?"
+    elif message.text == "Whats your name?":
+        text = "EchoBot, Whats yours?"
     else:
-        text = "Не понял:("
+        text = "Ne ponyal:("
         # text = ""
 
     bot.send_message(message.chat.id, text)
 
 
 bot.polling()
-# bot.infinity_polling()

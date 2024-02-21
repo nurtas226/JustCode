@@ -40,6 +40,5 @@ def message_handler(message):
         text = message.text
         )
 
-
 bot.polling()
 # bot.infinity_polling()
