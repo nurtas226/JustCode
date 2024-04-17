@@ -1,6 +1,6 @@
 import telebot
 
-API_TOKEN = '1391778632:AAEi7fPZVqvTMm25pSpNOdSCmv6Qq9ICy0Q'
+API_TOKEN = ''
 
 films = [
     {"title": "21", "url": "https://gidonline.com/mclksdc/21_film_url"},

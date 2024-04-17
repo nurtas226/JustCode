@@ -1,7 +1,7 @@
 import telebot
 import time
 
-API_TOKEN = '1391778632:AAEi7fPZVqvTMm25pSpNOdSCmv6Qq9ICy0Q'
+API_TOKEN = ''
 
 bot = telebot.TeleBot(API_TOKEN)
 

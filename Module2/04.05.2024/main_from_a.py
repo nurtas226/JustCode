@@ -5,7 +5,7 @@ from aiogram.filters import CommandStart, Command
 from aiogram.types import Message
 from aiogram.utils.markdown import hbold
 
-TOKEN = '6487914698:AAEJRx9MoKbe5RWJaXYsS_fFP4esVl4hwW0' # PASTE YOUR TOKEN HERE
+TOKEN = '' # PASTE YOUR TOKEN HERE
 dp = Dispatcher()
 
 @dp.message(CommandStart())

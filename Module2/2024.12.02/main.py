@@ -4,7 +4,7 @@ from telebot.types import CallbackQuery, Message, InlineKeyboardMarkup, InlineKe
 from messages import start_message, help_message
 from quiz_data import question_list, option_list
 
-API_TOKEN = "1391778632:AAEi7fPZVqvTMm25pSpNOdSCmv6Qq9ICy0Q"
+API_TOKEN = ""
 
 bot = telebot.TeleBot(token=API_TOKEN)
 
