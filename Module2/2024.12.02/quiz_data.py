@@ -2,7 +2,7 @@ question_list = [
     {
         "question": "What is a human's largest organ?",
         "options": ["A) Eye", "B) Skin", "C) Lungs", "D) Heart"],  # a, b, c, d
-        "correct_option": "b"  # "8"  # 1
+        "correct_option": "b" 
     },
     {
         "question": "How many sides does a triangle have?",

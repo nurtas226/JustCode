@@ -1,25 +1,34 @@
 import requests 
 from bs4 import BeautifulSoup
 
-def getHTML(url: str):
+def getHTML(url : str):
     try:
-        response = requests.get(url)
+        response = requests.get(url=url)
+        return response.text
     except Exception as e:
-        print(f"Something went wrong. Error: {e}")
+        print(f"Что-то пошло не так когда обращаюсь к {url}, Ошибка гласит : {e}")
         return None
 
-url = "https://kolesa.kz/cars/"
+def getPrice(soup : BeautifulSoup):
+    prices = []
+    all_divs = soup.find_all('span', 'a-card__price')
+    for div in all_divs:
+        prices.append(div.text)
+    return prices
+
+url = 'https://kolesa.kz/cars/toyota/camry/kostanai/'
+
 html = getHTML(url)
 
 if html:
     bs = BeautifulSoup(html, 'html.parser')
     pager = int(bs.find('div', 'row pager-row').find_all('a')[-2].text)
-    
-    all_prices = bs.find('span', class_ = 'a-card__price')
-    
-    for price in all_prices:
-        print(price.text.replace(" ", ""))
+    prices = getPrice(bs)
+    for page in range(2, pager + 1):
+        link = url + f'?page={page}'
+        html = getHTML(url=link)
+        bs = BeautifulSoup(html, 'html.parser')
+        for price in  getPrice(bs):
+            prices.append(price)
 else:
-    print('Something is wrong!')
-
-pager = bs.find('div', 'row pager-row')
+    print('Что-то не так!')
