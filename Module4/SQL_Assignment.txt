@@ -1,0 +1,135 @@
+CREATE TABLE Category (
+    CategoryID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Category_Name TEXT NOT NULL,
+    Category_Description TEXT
+);
+
+
+CREATE TABLE Product (
+    ProductID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Product_Name TEXT NOT NULL,
+    Product_Description TEXT, 
+    Price REAL NOT NULL,
+    Stock_Quantity INT NOT NULL,
+    CategoryID INT,
+    URL TEXT,
+    FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID)
+);
+
+
+CREATE TABLE Client (
+    ClientID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Name TEXT NOT NULL,
+    Surname TEXT NOT NULL,
+    Email TEXT NOT NULL UNIQUE,
+    Delivery_Address TEXT NOT NULL,
+    Phone_Number TEXT
+);
+
+
+CREATE TABLE Orders (
+    OrderID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Order_Date TEXT NOT NULL,
+    Order_Status TEXT NOT NULL,
+    ClientID INT,
+    Order_Price REAL NOT NULL,
+    FOREIGN KEY (ClientID) REFERENCES Client(ClientID)
+);
+
+
+CREATE TABLE Order_details (
+    DetailsID INTEGER PRIMARY KEY AUTOINCREMENT,
+    ProductID INT,
+    OrderID INT,
+    Quantity INT NOT NULL,
+    Price REAL NOT NULL,
+    FOREIGN KEY (ProductID) REFERENCES Product(ProductID),
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
+);
+
+
+CREATE TABLE Payment (
+    PaymentID INTEGER PRIMARY KEY AUTOINCREMENT,
+    OrderID INT,
+    Payment_amount REAL NOT NULL,
+    Payment_Date TEXT NOT NULL,
+    Payment_Method TEXT NOT NULL,
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
+);
+
+
+----------------------------------------------------------
+
+--Insert
+INSERT INTO Client (Name, Surname, Email, Delivery_Address, Phone_Number)
+VALUES ('Mateusz', 'Gamrot', 'mati@gamrot.com', 'Lenartowicza 12', '797551883');
+
+INSERT INTO Orders (Order_Date, Order_Status, ClientID , Order_Price)
+VALUES ('2024-05-26 14:30:00', 'Processing', 1, 599.99);
+
+INSERT INTO Order_details (ProductID, OrderID, Quantity, Price)
+VALUES (1, 1, 1, 599.99);
+
+-- Update
+UPDATE Orders
+SET Order_Status = 'Completed'
+WHERE OrderID = 1;
+
+--Delete
+DELETE FROM Orders
+WHERE OrderID = 1;
+
+--Adding category
+INSERT INTO Category (Category_Name, Category_Description)
+VALUES ('Electronics', 'Devices');
+
+--Inserting a product
+INSERT INTO Product (Product_Name, Product_Description, Price, Stock_Quantity, CategoryID, URL) 
+VALUES ('Iphone 14', 'Iphone 14, 256gb, Black', 1499, 9, 1, NULL);
+
+--Finding products by category
+SELECT p.ProductID, p.Product_Name, p.Product_Description, p.Price, p.Stock_Quantity, p.URL
+FROM Product p
+JOIN Category c ON p.CategoryID = c.CategoryID
+WHERE c.Category_Name = 'Electronics';
+
+-- Register a new client
+INSERT INTO Client (Name, Surname, Email, Delivery_Address, Phone_Number)
+VALUES ('Kamil', 'Doe', 'kamil@doe.com', '123 Elm Street', '555123476');
+
+-- Authenticate a client
+SELECT ClientID
+FROM Client
+WHERE Email = 'kamil@doe.com';
+
+--Creating indexes to speed up queries
+CREATE INDEX idx_product_name ON Product (Product_Name);
+CREATE INDEX idx_product_category ON Product (CategoryID);
+CREATE INDEX idx_client_email ON Client (Email);
+CREATE INDEX idx_orders_client ON Orders (ClientID);
+CREATE INDEX idx_orders_date ON Orders (Order_Date);
+CREATE INDEX idx_order_details_order ON Order_details (OrderID);
+CREATE INDEX idx_order_details_product ON Order_details (ProductID);
+
+--Review table
+CREATE TABLE Review (
+    ReviewID INTEGER PRIMARY KEY AUTOINCREMENT,
+    ProductID INT,
+    ClientID INT,
+    Rating INT CHECK (Rating >= 1 AND Rating <= 5),
+    Comment TEXT,
+    Review_Date TEXT,
+    FOREIGN KEY (ProductID) REFERENCES Product(ProductID) ON DELETE CASCADE,
+    FOREIGN KEY (ClientID) REFERENCES Client(ClientID) ON DELETE CASCADE
+);
+
+-- Example of a review
+INSERT INTO Review (ProductID, ClientID, Rating, Comment, Review_Date)
+VALUES (1, 1, 5, 'Excellent product!', '2024-05-26');
+
+
+
+
+
+
+-------Documentation-------
